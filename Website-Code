@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NoVA Haul & Clear | Junk Removal · Northern Virginia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1f1a;
+    --ink-mid: #3d4a3d;
+    --ink-soft: #6b7a6b;
+    --bg: #f5f6f2;
+    --white: #ffffff;
+    --green: #2d5c2d;
+    --green-light: #3d7a3d;
+    --green-pale: #e8f0e8;
+    --gold: #c8871a;
+    --gold-pale: #fdf4e3;
+    --border: rgba(0,0,0,0.10);
+    --radius: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 60px;
+    gap: 20px;
+  }
+
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover { color: #fff; }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--ink) !important;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .nav-cta:hover { background: #e09a22 !important; color: var(--ink) !important; }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 80px 5% 70px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 45%;
+    background: var(--green);
+    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+    opacity: 0.55;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(48px, 8vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.8);
+    max-width: 500px;
+    margin-bottom: 36px;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.15s, transform 0.1s;
+  }
+
+  .btn-primary:hover { background: #e09a22; transform: translateY(-1px); }
+
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.35);
+    color: #fff;
+    padding: 13px 24px;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .btn-outline:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.07); }
+
+  .hero-badges {
+    display: flex;
+    gap: 20px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+
+  .hero-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .hero-badge .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--green);
+    padding: 16px 5%;
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.92);
+  }
+
+  .trust-icon {
+    font-size: 16px;
+  }
+
+  /* SECTIONS */
+  section { padding: 72px 5%; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 540px;
+    line-height: 1.65;
+    margin-bottom: 44px;
+  }
+
+  /* SERVICES */
+  #services { background: var(--white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .service-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .service-card:hover {
+    border-color: var(--green);
+    box-shadow: 0 4px 16px rgba(45,92,45,0.12);
+  }
+
+  .service-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .service-name {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+
+  .service-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* HOW IT WORKS */
+  #how { background: var(--bg); }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+    counter-reset: steps;
+  }
+
+  .step {
+    counter-increment: steps;
+    position: relative;
+    padding-top: 52px;
+  }
+
+  .step::before {
+    content: counter(steps);
+    position: absolute;
+    top: 0; left: 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--green-pale);
+    z-index: 0;
+  }
+
+  .step-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--ink);
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* PRICING */
+  #pricing { background: var(--white); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .price-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 22px 20px;
+    background: var(--bg);
+  }
+
+  .price-card.featured {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+  }
+
+  .price-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+
+  .price-card.featured .price-label { color: rgba(255,255,255,0.75); }
+
+  .price-amount {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .price-card.featured .price-amount { color: #fff; }
+
+  .price-note {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+
+  .price-card.featured .price-note { color: rgba(255,255,255,0.65); }
+
+  .price-includes {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+
+  .price-card.featured .price-includes {
+    color: rgba(255,255,255,0.85);
+    border-top-color: rgba(255,255,255,0.25);
+  }
+
+  .pricing-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    background: var(--gold-pale);
+    border-left: 3px solid var(--gold);
+    padding: 12px 16px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+
+  /* WHY US */
+  #why { background: var(--ink); color: #fff; }
+
+  #why .section-title { color: #fff; }
+  #why .section-label { color: var(--gold); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+
+  .why-item {
+    padding: 24px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: var(--radius);
+  }
+
+  .why-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .why-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+
+  .why-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
+  }
+
+  /* SERVICE AREA */
+  #area { background: var(--bg); }
+
+  .area-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .area-tag {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-mid);
+  }
+
+  /* QUOTE FORM */
+  #quote { background: var(--green); color: #fff; }
+
+  #quote .section-label { color: rgba(255,255,255,0.6); }
+  #quote .section-title { color: #fff; }
+  #quote .section-sub { color: rgba(255,255,255,0.8); }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-width: 680px;
+  }
+
+  .form-grid .full { grid-column: 1 / -1; }
+
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 15px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.15s, background 0.15s;
+    -webkit-appearance: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.4); }
+
+  .form-group select option { color: var(--ink); background: #fff; }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.18);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    margin-top: 6px;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 14px 32px;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.15s, transform 0.1s;
+    width: 100%;
+  }
+
+  .form-submit:hover { background: #e09a22; transform: translateY(-1px); }
+
+  .form-note {
+    margin-top: 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0f140f;
+    color: rgba(255,255,255,0.55);
+    padding: 36px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: #fff;
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  footer p { font-size: 13px; }
+
+  .footer-contact {
+    font-size: 13px;
+    text-align: right;
+  }
+
+  .footer-contact a {
+    color: var(--gold);
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+  }
+
+  /* SUCCESS STATE */
+  .form-success {
+    display: none;
+    background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: center;
+    max-width: 680px;
+  }
+
+  .form-success h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .form-success p { color: rgba(255,255,255,0.75); font-size: 15px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero { padding: 56px 5% 52px; }
+    .hero::before { width: 100%; clip-path: none; opacity: 0.15; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-grid .full { grid-column: 1; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-contact { text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">NoVA Haul <span>&amp;</span> Clear</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#area">Service Area</a></li>
+    <li><a href="#quote" class="nav-cta">Get a Free Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Northern Virginia's trusted junk removal</p>
+    <h1>We haul it.<br><em>You're done.</em></h1>
+    <p class="hero-sub">Same-day and next-day junk removal across NoVA. Upfront pricing, no hidden fees, and we donate what we can so your stuff stays out of a landfill.</p>
+    <div class="hero-actions">
+      <a href="#quote" class="btn-primary">Get a free quote</a>
+      <a href="tel:+15555550100" class="btn-outline">Call or text us</a>
+    </div>
+    <div class="hero-badges">
+      <div class="hero-badge"><span class="dot"></span> Same-day available</div>
+      <div class="hero-badge"><span class="dot"></span> Upfront pricing — always</div>
+      <div class="hero-badge"><span class="dot"></span> We donate &amp; recycle first</div>
+      <div class="hero-badge"><span class="dot"></span> Licensed &amp; insured</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">★</span> 5-star rated on Google</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> Serving Fairfax, Arlington, Alexandria &amp; more</div>
+  <div class="trust-item"><span class="trust-icon">♻</span> Items donated before anything hits a landfill</div>
+  <div class="trust-item"><span class="trust-icon">📞</span> Real person answers every call</div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-label">What we handle</p>
+  <h2 class="section-title">Every kind of haul,<br>big or small</h2>
+  <p class="section-sub">From a single couch to a full estate cleanout — if you need it gone, we'll take it. No job is too small.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🛋️</span>
+      <div class="service-name">Furniture &amp; appliance removal</div>
+      <div class="service-desc">Couches, mattresses, fridges, washers, TVs — we take it all, including items on upper floors.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🏡</span>
+      <div class="service-name">Garage &amp; basement cleanouts</div>
+      <div class="service-desc">Years of accumulated clutter cleared out in a single visit. We sort, haul, and clean up after ourselves.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🏠</span>
+      <div class="service-name">Estate &amp; move-out cleanouts</div>
+      <div class="service-desc">Clearing an inherited home or prepping a property for sale or rent. We work fast and respect the space.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🔨</span>
+      <div class="service-name">Construction &amp; renovation debris</div>
+      <div class="service-desc">Drywall, lumber, tile, flooring — post-project cleanup handled so your contractor doesn't have to.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🌿</span>
+      <div class="service-name">Yard waste &amp; outdoor junk</div>
+      <div class="service-desc">Brush piles, old patio furniture, sheds, hot tubs, fencing — we handle heavy outdoor removal too.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🗂️</span>
+      <div class="service-name">Office &amp; commercial cleanouts</div>
+      <div class="service-desc">Relocating or downsizing your office? We clear old furniture, equipment, and filing cabinets fast.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <p class="section-label">The process</p>
+  <h2 class="section-title">Done in three steps</h2>
+  <p class="section-sub">No surprises, no pressure. We make it as easy as making a phone call.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-title">Call, text, or fill out the form</div>
+      <div class="step-desc">Tell us what you need gone and where you're located. We'll get back to you within the hour — a real person, not a bot.</div>
+    </div>
+    <div class="step">
+      <div class="step-title">We give you a firm price upfront</div>
+      <div class="step-desc">We quote before we start. No loading up the truck and surprising you with a bill. The price we say is the price you pay.</div>
+    </div>
+    <div class="step">
+      <div class="step-title">We haul it, you're done</div>
+      <div class="step-desc">We do all the heavy lifting, load it up, and leave the area clean. We sort for donation and recycling before anything goes to the landfill.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <p class="section-label">Transparent pricing</p>
+  <h2 class="section-title">Know your price<br>before we start</h2>
+  <p class="section-sub">We price by volume — how much space your items take up in our truck. All labor, hauling, and disposal fees included.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-label">Single item</div>
+      <div class="price-amount">$75+</div>
+      <div class="price-note">Furniture, appliances, mattresses</div>
+      <div class="price-includes">One large item, removed from anywhere in your home. Includes carry-out and cleanup.</div>
+    </div>
+    <div class="price-card">
+      <div class="price-label">Quarter load</div>
+      <div class="price-amount">$125–175</div>
+      <div class="price-note">A few items, small cleanout</div>
+      <div class="price-includes">A couch + chair, a few boxes, or a small room's worth. All labor included.</div>
+    </div>
+    <div class="price-card featured">
+      <div class="price-label">Half load</div>
+      <div class="price-amount">$200–275</div>
+      <div class="price-note">Most popular — garage or basement</div>
+      <div class="price-includes">Great for garage clean-outs, estate cleanouts, or move-out prep. We sort donations too.</div>
+    </div>
+    <div class="price-card">
+      <div class="price-label">Full load</div>
+      <div class="price-amount">$350–500</div>
+      <div class="price-note">Large-scale removal</div>
+      <div class="price-includes">Complete home, estate, or commercial cleanouts. We'll make multiple runs for large properties.</div>
+    </div>
+  </div>
+  <p class="pricing-note">🏡 <strong>Realtors &amp; property managers:</strong> Ask about our priority scheduling and referral program. We keep your listings move-in ready.</p>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <p class="section-label">Why NoVA Haul &amp; Clear</p>
+  <h2 class="section-title">What sets us apart</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,0.7)">There's no shortage of junk removal trucks in NoVA. Here's what makes us different.</p>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-num">1</div>
+      <div class="why-title">Same-day or next-day</div>
+      <div class="why-desc">Most companies book 3–4 days out. We aim to be there the same day or the next morning. Life doesn't wait.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">2</div>
+      <div class="why-title">Price locked before we lift a thing</div>
+      <div class="why-desc">Hidden fees and surprise bills are the #1 complaint in this industry. We tell you the price upfront, and we stick to it.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">3</div>
+      <div class="why-title">We donate first, dump last</div>
+      <div class="why-desc">Usable items go to Habitat for Humanity ReStore and local charities before anything reaches a landfill. We'll show you what we donated.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">4</div>
+      <div class="why-title">Locally owned, not a franchise</div>
+      <div class="why-desc">You're calling a real NoVA local, not a call center. We live and work here. Your experience matters to us personally.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section id="area">
+  <p class="section-label">Service area</p>
+  <h2 class="section-title">We come to you<br>across Northern Virginia</h2>
+  <p class="section-sub">Not sure if we cover your area? Call or text — if we can get there, we will.</p>
+  <div class="area-list">
+    <span class="area-tag">Fairfax</span>
+    <span class="area-tag">Arlington</span>
+    <span class="area-tag">Alexandria</span>
+    <span class="area-tag">McLean</span>
+    <span class="area-tag">Reston</span>
+    <span class="area-tag">Herndon</span>
+    <span class="area-tag">Ashburn</span>
+    <span class="area-tag">Leesburg</span>
+    <span class="area-tag">Manassas</span>
+    <span class="area-tag">Woodbridge</span>
+    <span class="area-tag">Springfield</span>
+    <span class="area-tag">Vienna</span>
+    <span class="area-tag">Falls Church</span>
+    <span class="area-tag">Gainesville</span>
+    <span class="area-tag">Chantilly</span>
+    <span class="area-tag">Centreville</span>
+    <span class="area-tag">Burke</span>
+    <span class="area-tag">Annandale</span>
+    <span class="area-tag">Great Falls</span>
+    <span class="area-tag">Sterling</span>
+  </div>
+</section>
+
+<!-- QUOTE FORM -->
+<section id="quote">
+  <p class="section-label">Get a free quote</p>
+  <h2 class="section-title">Tell us what you need gone</h2>
+  <p class="section-sub">Fill this out and we'll get back to you within the hour. No obligation, no pressure.</p>
+
+  <form id="quoteForm" name="quote-request" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="quote-request">
+    <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="fname">First name</label>
+        <input type="text" id="fname" name="first-name" placeholder="John" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(703) 555-0100" required>
+      </div>
+      <div class="form-group full">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="john@email.com">
+      </div>
+      <div class="form-group full">
+        <label for="city">City / neighborhood</label>
+        <input type="text" id="city" name="city" placeholder="Fairfax, Arlington, etc." required>
+      </div>
+      <div class="form-group full">
+        <label for="service">What do you need removed?</label>
+        <select id="service" name="service-type" required>
+          <option value="" disabled selected>Select a job type</option>
+          <option>Single item (furniture, appliance)</option>
+          <option>Garage or basement cleanout</option>
+          <option>Estate or move-out cleanout</option>
+          <option>Construction / renovation debris</option>
+          <option>Yard waste or outdoor junk</option>
+          <option>Office or commercial cleanout</option>
+          <option>Not sure — I'll describe below</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label for="details">Additional details (optional)</label>
+        <textarea id="details" name="details" placeholder="Describe what you need hauled, any access challenges, preferred timing, etc."></textarea>
+      </div>
+      <div class="form-group full">
+        <button type="submit" class="form-submit" id="submitBtn">Request my free quote →</button>
+        <p class="form-note">We typically respond within 1 hour. Same-day service often available.</p>
+      </div>
+    </div>
+  </form>
+
+  <div class="form-success" id="formSuccess">
+    <h3>✓ Got it — we'll be in touch soon!</h3>
+    <p>We usually respond within the hour. If you need us sooner, call or text us directly.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NoVA Haul <span>&amp;</span> Clear</div>
+  <p>© 2026 NoVA Haul &amp; Clear LLC · Northern Virginia</p>
+  <div class="footer-contact">
+    <a href="tel:+17038296348">(703) 829-6348</a>
+    <a href="mailto:support@novaHaulandClear.com">support@novahaulandclear.com</a>
+  </div>
+</footer>
+
+<script>
+  function encode(data) {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  }
+
+  document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = e.target;
+    var btn = document.getElementById('submitBtn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    var data = {
+      'form-name': 'quote-request',
+      'first-name': document.getElementById('fname').value,
+      'phone': document.getElementById('phone').value,
+      'email': document.getElementById('email').value,
+      'city': document.getElementById('city').value,
+      'service-type': document.getElementById('service').value,
+      'details': document.getElementById('details').value,
+      'bot-field': ''
+    };
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode(data)
+    })
+    .then(function() {
+      document.getElementById('quoteForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    })
+    .catch(function(err) {
+      btn.textContent = 'Request my free quote →';
+      btn.disabled = false;
+      alert('Something went wrong. Please call or text us directly to request a quote.');
+    });
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
